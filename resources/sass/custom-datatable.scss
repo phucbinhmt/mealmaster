@@ -1,0 +1,102 @@
+div.dt-container .dt-paging .dt-paging-button {
+  min-width: 1.75rem !important;
+  border-radius: var(--tblr-border-radius) !important;
+  color: inherit !important;
+  background-color: transparent !important;
+  border: 0 solid var(--tblr-border-color) !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled {
+  color: inherit !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current,
+div.dt-container .dt-paging .dt-paging-button.current:hover {
+  color: #ffffff !important;
+  background-color: var(--tblr-primary) !important;
+  border-color: var(--tblr-primary) !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button:hover {
+  background: var(--tblr-primary) !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled:hover {
+  color: #ffffff !important;
+  border-color: var(--tblr-gray) !important;
+  cursor: not-allowed;
+}
+
+table.dataTable thead > tr > th.dt-orderable-asc span.dt-column-order,
+table.dataTable thead > tr > th.dt-orderable-desc span.dt-column-order {
+  right: unset;
+  margin-left: 10px;
+}
+
+.dt-orderable-none .dt-column-order {
+  display: none;
+}
+
+div.dt-processing > div:last-child {
+  display: none;
+}
+
+.card-body:has(.dt-container) {
+  padding: 0;
+}
+
+table.dataTable > thead > tr > th {
+  border-bottom: 1px solid rgba(4, 32, 69, 0.14);
+}
+
+div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+  border-bottom: 1px solid rgba(4, 32, 69, 0.14);
+}
+
+div.dt-container .dt-search input {
+  color: var(--tblr-body-color);
+  border: var(--tblr-border-width) solid var(--tblr-border-color);
+  outline: unset;
+}
+
+div.dt-container .dt-search input:focus {
+  background-color: var(--tblr-bg-forms);
+  border-color: #80aad3;
+  outline: 0;
+  box-shadow: var(--tblr-box-shadow-input), 0 0 0 0.25rem rgba(var(--tblr-primary-rgb), 0.25);
+}
+div.dt-container .dt-length select {
+  color: var(--tblr-body-color);
+  border: var(--tblr-border-width) solid var(--tblr-border-color);
+  outline: unset;
+}
+
+div.dt-container .dt-length select:focus {
+  background-color: var(--tblr-bg-forms);
+  border-color: #80aad3;
+  outline: 0;
+  box-shadow: var(--tblr-box-shadow-input), 0 0 0 0.25rem rgba(var(--tblr-primary-rgb), 0.25);
+}
+
+div.dt-container .dt-length,
+div.dt-container .dt-info {
+  margin-left: 20px;
+}
+
+div.dt-container .dt-search,
+div.dt-container .dt-paging {
+  margin-right: 20px;
+}
+
+div.dt-container div.dt-layout-row {
+  margin: 15px 0;
+}
+
+div.dt-container div.dt-layout-row.dt-layout-table {
+  border-top: var(--tblr-border-width) solid var(--tblr-border-color);
+}
+
+table.dataTable > tbody > tr > td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
