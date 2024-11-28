@@ -38,8 +38,10 @@
                         <thead>
                             <tr>
                                 <th>@lang('#')</th>
-                                <th>@lang('Name')</th>
-                                <th>@lang('Display Name')</th>
+                                <th>@lang('Employee code')</th>
+                                <th>@lang('Full Name')</th>
+                                <th>@lang('Position')</th>
+                                <th>@lang('Status')</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -54,11 +56,14 @@
     @include('modals.users-modal')
     @include('modals.change-password-modal')
     @include('modals.confirm-delete-modal');
+    @include('modals.change-avatar-modal');
+    @include('modals.change-user-status-modal')
 @endpush
 
 @push('scripts')
     {!! JsValidator::formRequest('App\Http\Requests\StoreUserRequest', '#userForm') !!}
     {!! JsValidator::formRequest('App\Http\Requests\ChangePasswordRequest', '#changePasswordForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\ChangeUserStatusRequest', '#changeUserStatusForm') !!}
     <script>
         const languages = {
             edit_action: "{{ __('Edit user') }}",
@@ -69,6 +74,8 @@
             update_success_message: "{{ __('User updated successfully') }}",
             delete_success_message: "{{ __('User deleted successfully') }}",
             change_password_success_message: "{{ __('Password changed successfully') }}",
+            change_avatar_success_message: "{{ __('Avatar changed successfully') }}",
+            change_status_success_message: "{{ __('Status changed successfully') }}",
         }
     </script>
     @vite('resources/js/pages/users.js')

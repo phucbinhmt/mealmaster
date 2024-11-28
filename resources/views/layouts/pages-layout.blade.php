@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'MealMaster') }} - @yield('pageTitle')</title>
     <!-- CSS files -->
+    <link href="tabler/dist/libs/dropzone/dist/dropzone.css?1692870487" rel="stylesheet" />
     <link href="tabler/dist/css/tabler.min.css?1692870487" rel="stylesheet" />
     <link href="tabler/dist/css/tabler-flags.min.css?1692870487" rel="stylesheet" />
     <link href="tabler/dist/css/tabler-payments.min.css?1692870487" rel="stylesheet" />
@@ -27,6 +28,8 @@
     </style>
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+    <!-- Full calendar -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
     <!-- Styles -->
     @vite('resources/sass/app.scss')
     @stack('styles')
@@ -53,6 +56,7 @@
     <script src="tabler/dist/libs/nouislider/dist/nouislider.min.js?1692870487" defer></script>
     <script src="tabler/dist/libs/litepicker/dist/litepicker.js?1692870487" defer></script>
     <script src="tabler/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487" defer></script>
+    <script src="tabler/dist/libs/dropzone/dist/dropzone-min.js?1692870487" defer></script>
     <!-- Tabler Core -->
     <script src="tabler/dist/js/tabler.min.js?1692870487" defer></script>
     <script src="tabler/dist/js/demo.min.js?1692870487" defer></script>
@@ -60,6 +64,8 @@
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+    <!-- Full calendar -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
     <!-- Scripts -->

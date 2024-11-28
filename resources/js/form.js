@@ -7,6 +7,10 @@ function resetForm(formSelect) {
   tomselects.each(function () {
     this.tomselect.clear();
   });
+  const dropzones = formSelect.find(".dropzone");
+  dropzones.each(function () {
+    this.dropzone.removeAllFiles();
+  });
 }
 
 window.resetForm = resetForm;

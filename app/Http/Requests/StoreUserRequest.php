@@ -29,7 +29,7 @@ class StoreUserRequest extends FormRequest
             'role' => 'required|exists:roles,name',
             'first_name' => 'required|string|max:100',
             'last_name' => 'required|string|max:100',
-            'phone_number' => 'required|string|max:15|unique:users,phone_number,' . $id,
+            'phone_number' => 'required|numeric|digits_between:10,15|unique:users,phone_number,' . $id,
             'address' => 'required|string|max:255',
             'date_of_birth' => 'required|date_format:d/m/Y',
             'profile_picture_path' => 'nullable|image|max:2048',

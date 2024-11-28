@@ -1,6 +1,8 @@
-$("select.province-select").each(function () {
-  const provinceSelect = this.tomselect;
-  loadProvinces(provinceSelect);
+$(document).ready(function () {
+  $("select.province-select").each(function () {
+    const provinceSelect = this.tomselect;
+    loadProvinces(provinceSelect);
+  });
 });
 
 $(".province-select").on("change", function () {

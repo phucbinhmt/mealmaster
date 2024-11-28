@@ -10,11 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Enums\UserStatusEnum;
 use App\Enums\GenderEnum;
+use App\Traits\ImageUpload;
 use Carbon\Carbon;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, ImageUpload;
 
     /**
      * The attributes that are mass assignable.
@@ -67,5 +68,20 @@ class User extends Authenticatable
     public function setDateOfBirthAttribute($value)
     {
         $this->attributes['date_of_birth'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->last_name . " " . $this->first_name;
+    }
+
+    public function getStatusNameAttribute()
+    {
+        return $this->status->value;
+    }
+
+    public function getPositionNameAttribute()
+    {
+        return $this->roles->first()->display_name;
     }
 }

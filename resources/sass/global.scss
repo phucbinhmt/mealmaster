@@ -1,0 +1,58 @@
+.text-status-active {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-success-rgb), var(--tblr-text-opacity)) !important;
+}
+
+.bg-status-active {
+    --tblr-text-opacity: 1;
+    background-color: var(--tblr-success) !important;
+}
+
+.text-status-inactive {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-warning-rgb), var(--tblr-text-opacity)) !important;
+}
+
+.bg-status-inactive {
+    --tblr-text-opacity: 1;
+    background-color: var(--tblr-warning) !important;
+}
+
+.text-status-blocked {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-danger-rgb), var(--tblr-text-opacity)) !important;
+}
+
+.bg-status-blocked {
+    --tblr-text-opacity: 1;
+    background-color: var(--tblr-danger) !important;
+}
+
+
+// Chua sua
+.text-status-success {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-success-rgb), var(--tblr-text-opacity)) !important;
+    background-color: var(--tblr-success) !important;
+}
+
+.text-status-pending {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-warning-rgb), var(--tblr-text-opacity)) !important;
+}
+
+.text-status-cancelled {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-danger-rgb), var(--tblr-text-opacity)) !important;
+}
+
+.text-status-failed {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-danger-rgb), var(--tblr-text-opacity)) !important;
+    background-color: var(--tblr-danger) !important;
+}
+
+.text-status-processing {
+    --tblr-text-opacity: 1;
+    color: rgba(var(--tblr-info-rgb), var(--tblr-text-opacity)) !important;
+}

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\ChangeUserStatusRequest;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateAvatarRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Services\Contracts\UserServiceInterface;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class UserController extends Controller
@@ -79,6 +82,24 @@ class UserController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Password changed successfully.',
+        ], Response::HTTP_OK);
+    }
+
+    public function updateAvatar(UpdateAvatarRequest $request, string $id)
+    {
+        $this->userService->updateAvatar($id, $request->avatar);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Avatar updated successfully.',
+        ], Response::HTTP_OK);
+    }
+
+    public function changeStatus(ChangeUserStatusRequest $request, string $id)
+    {
+        $this->userService->changeStatus($id, $request->status);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Status changed successfully.',
         ], Response::HTTP_OK);
     }
 

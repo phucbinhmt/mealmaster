@@ -56,7 +56,7 @@ class RoleService implements RoleServiceInterface
         return DataTables::of($model)
             ->addIndexColumn()
             ->addColumn('action', function ($role) {
-                return view('table-actions.roles-action', compact('role'));
+                return view('datatable.roles-action', compact('role'));
             })
             ->rawColumns(['action'])
             ->toJson();

@@ -5,6 +5,10 @@ const changePasswordForm = $("#changePasswordForm");
 const userModal = $("#userModal");
 const changePasswordModal = $("#changePasswordModal");
 const confirmDeleteModal = $("#confirmDeleteModal");
+const changeAvatarModal = $("#changeAvatarModal");
+const changeAvatarForm = $("#changeAvatarForm");
+const changeUserStatusModal = $("#changeUserStatusModal");
+const changeUserStatusForm = $("#changeUserStatusForm");
 const confirmDelete = $("#confirmDelete");
 const modalTitle = userModal.find(".modal-title");
 const modalSubmit = userModal.find("button[type=submit]");
@@ -87,6 +91,116 @@ changePasswordForm.on("submit", function (e) {
     success: function (response) {
       changePasswordModal.modal("hide");
       createFlashMessage(languages.change_password_success_message, languages.success_title, "success");
+    },
+    complete: function () {
+      clickedButton.removeClass("btn-loading");
+    },
+  });
+});
+
+usersTable.on("click", ".change-status", function (e) {
+  e.preventDefault();
+  resetForm(changeUserStatusForm);
+  const userId = $(this).data("id");
+  changeUserStatusModal.data("id", userId);
+  const url = route("users.show", userId);
+
+  $.ajax({
+    type: "get",
+    url: url,
+    success: function (response) {
+      const user = response.data;
+      const currentUserStatus = user.status;
+      $('#currentStatus').text(capitalizeFirstLetter(currentUserStatus));
+      $('#currentStatus').attr('class', `text-status-${currentUserStatus}`);
+
+    },
+    complete: function () {
+      changeUserStatusModal.modal("show");
+    },
+  });
+});
+
+changeUserStatusForm.on("submit", function (e) {
+  e.preventDefault();
+  const userId = changeUserStatusModal.data("id");
+  const url = route("users.change-status", userId);
+  const formData = new FormData(this);
+  formData.append("_method", "PUT");
+  const clickedButton = $(document.activeElement);
+
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: formData,
+    contentType: false,
+    processData: false,
+    beforeSend: function () {
+      clickedButton.addClass("btn-loading");
+    },
+    success: function (response) {
+      changeUserStatusModal.modal("hide");
+      createFlashMessage(languages.change_status_success_message, languages.success_title, "success");
+      usersDatatable.ajax.reload();
+    },
+    complete: function () {
+      clickedButton.removeClass("btn-loading");
+    },
+  });
+});
+
+usersTable.on("click", ".change-avatar", function (e) {
+  e.preventDefault();
+  resetForm(changeAvatarForm);
+  const userId = $(this).data("id");
+  changeAvatarModal.data("id", userId);
+  const url = route("users.show", userId);
+
+  $.ajax({
+    type: "get",
+    url: url,
+    success: function (response) {
+      const user = response.data;
+      const avatarUrl = user.profile_picture_path;
+      if (!avatarUrl) return;
+
+      const dropzone = $('#avatarUpload')[0].dropzone;
+      const mockFile = { name: 'avatar.jpg', size: 1234 };
+      dropzone.files.push(mockFile);
+      dropzone.emit('addedfile', mockFile);
+      dropzone.emit('thumbnail', mockFile, avatarUrl);
+      dropzone.emit('complete', mockFile);
+    },
+    complete: function () {
+      changeAvatarModal.modal("show");
+    },
+  });
+});
+
+changeAvatarForm.on("submit", function (e) {
+  e.preventDefault();
+  const userId = changeAvatarModal.data("id");
+  const url = route("users.update-avatar", userId);
+  const formData = new FormData(this);
+  formData.append("_method", "PUT");
+  const dropzone = $('#avatarUpload')[0].dropzone;
+  const file = dropzone.getAcceptedFiles()[0];
+  file && formData.append("avatar", file);
+  const clickedButton = $(document.activeElement);
+
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: formData,
+    contentType: false,
+    processData: false,
+    beforeSend: function () {
+      clickedButton.addClass("btn-loading");
+    },
+    success: function (response) {
+      changeAvatarModal.modal("hide");
+      createFlashMessage(languages.change_avatar_success_message, languages.success_title, "success");
+      usersDatatable.ajax.reload();
     },
     complete: function () {
       clickedButton.removeClass("btn-loading");
@@ -192,8 +306,16 @@ function renderTable(table) {
         name: "employee_code",
       },
       {
-        data: "first_name",
-        name: "first_name",
+        data: "full_name",
+        name: "full_name",
+      },
+      {
+        data: "position_name",
+        name: "position_name",
+      },
+      {
+        data: "status_name",
+        name: "status_name",
       },
       {
         data: "action",

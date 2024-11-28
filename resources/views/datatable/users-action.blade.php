@@ -4,6 +4,8 @@
     <div class="dropdown-menu dropdown-menu-end" style="">
         <a class="dropdown-item edit" data-id="{{ $user->id }}" href="#">@lang('Edit')</a>
         <a class="dropdown-item change-password" data-id="{{ $user->id }}" href="#">@lang('Change password')</a>
+        <a class="dropdown-item change-status" data-id="{{ $user->id }}" href="#">@lang('Change status')</a>
+        <a class="dropdown-item change-avatar" data-id="{{ $user->id }}" href="#">@lang('Change avatar')</a>
         <a class="dropdown-item delete" data-id="{{ $user->id }}" href="#">@lang('Delete')</a>
     </div>
 </div>

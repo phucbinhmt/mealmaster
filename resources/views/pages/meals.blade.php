@@ -1,11 +1,11 @@
 @extends('layouts.pages-layout')
 
-@section('pageTitle', $pageTitle ?? __('Roles'))
+@section('pageTitle', $pageTitle ?? __('Meals'))
 
 @section('pageTitleAction')
     @php
-        $modalId = '#roleModal';
-        $modalLabel = __('New role');
+        $modalId = '#mealModal';
+        $modalLabel = __('New meal');
     @endphp
     <div class="col-auto ms-auto d-print-none">
         <div class="btn-list">
@@ -30,16 +30,18 @@
     <div class="container container-xl">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">@lang('Roles')</h3>
+                <h3 class="card-title">@lang('Meals')</h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="rolesTable" class="table card-table table-vcenter text-nowrap datatable">
+                    <table id="mealsTable" class="table card-table table-vcenter text-nowrap datatable">
                         <thead>
                             <tr>
                                 <th>@lang('#')</th>
                                 <th>@lang('Name')</th>
-                                <th>@lang('Display Name')</th>
+                                <th>@lang('Category')</th>
+                                <th>@lang('Price')</th>
+                                <th>@lang('Status')</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -51,23 +53,23 @@
 @endsection
 
 @push('modals')
-    @include('modals.roles-modal');
-    @include('modals.permissions-modal');
+    @include('modals.meals-modal')
     @include('modals.confirm-delete-modal');
 @endpush
 
 @push('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\StoreRoleRequest', '#roleForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\StoreMealRequest', '#mealForm') !!}
     <script>
         const languages = {
-            edit_action: "{{ __('Edit role') }}",
-            add_action: "{{ __('Add role') }}",
+            edit_action: "{{ __('Edit meal') }}",
+            add_action: "{{ __('Add meal') }}",
             success_title: "{{ __('Success') }}",
-            create_success_message: "{{ __('Role created successfully') }}",
-            update_success_message: "{{ __('Role updated successfully') }}",
-            delete_success_message: "{{ __('Role deleted successfully') }}",
-            update_permission_success_message: "{{ __('Permissions updated successfully') }}",
+            failed_title: "{{ __('Failed') }}",
+            create_success_message: "{{ __('Meal created successfully') }}",
+            update_success_message: "{{ __('Meal updated successfully') }}",
+            delete_success_message: "{{ __('Meal deleted successfully') }}",
+            change_status_success_message: "{{ __('Status changed successfully') }}",
         }
     </script>
-    @vite('resources/js/pages/roles.js')
+    @vite('resources/js/pages/meals.js')
 @endpush
